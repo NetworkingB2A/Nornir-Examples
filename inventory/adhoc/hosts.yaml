@@ -1,0 +1,37 @@
+---
+router10:
+  hostname: 192.168.2.10
+  groups:
+    - routers
+router11:
+  hostname: 192.168.2.11
+  groups:
+    - routers
+router12:
+  hostname: 192.168.2.12
+  groups:
+    - routers
+router13:
+  hostname: 192.168.2.13
+  groups:
+    - routers
+router14:
+  hostname: 192.168.2.14
+  groups:
+    - routers
+router15:
+  hostname: 192.168.2.15
+  groups:
+    - routers
+switch31:
+  hostname: 192.168.2.31
+  groups:
+    - switches
+switch32:
+  hostname: 192.168.2.32
+  groups:
+    - switches
+switch33:
+  hostname: 192.168.2.33
+  groups:
+    - switches

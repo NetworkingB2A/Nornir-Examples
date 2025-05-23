@@ -1,0 +1,26 @@
+---
+inventory:
+  plugin: NetBoxInventory2
+  options:
+    defaults_file: "inventory/netbox/defaults.yaml"  # I load in a default name and password here, this is one way of this doing this but I don't consider it a good way. I'll likely change this to using env vars.
+    ssl_verify: true
+    filter_parameters:  # Use this if you want to prefilter the api call, to reduce the number of total devices getting pulled in.
+      site:
+        - adam-virtual-lab
+        # - dnac-sandbox
+        # - local-computer-lab
+      manufacturer: cisco
+
+
+  # You will need to decide how to load your env vars, or you can hardcode you vars below.
+  # I use a .env file and have my python script load that .env file into my environment at runtime.
+  # I personally don't like to hardcode as the vars, because I might forget to remove them when I load my file to github.
+  # Refer to the Nornir Netbox documentation for the exact details.
+  # options:
+  #   nb_url: https://netbox.local:8000
+  #   nb_token: "1234567890"
+
+runner:
+  plugin: threaded
+  options:
+    num_workers: 10
