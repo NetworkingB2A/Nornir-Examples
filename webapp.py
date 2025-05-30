@@ -1,5 +1,5 @@
+import streamlit as st
 from nornir import InitNornir
-
 
 from dotenv import load_dotenv
 
@@ -9,15 +9,13 @@ from nornir_napalm.plugins.tasks import napalm_get
 from pprint import pprint
 
 
-load_dotenv()
 
+
+load_dotenv()
 
 nr = InitNornir(
     config_file="config/netbox_config.yaml",
 )
-
-print(nr.inventory.hosts)
-
 
 def gather_device_facts(task: Task):
     task.run(
@@ -29,7 +27,7 @@ def gather_device_facts(task: Task):
 
 
 def gather_netbox_facts(task: Task):
-    pprint(task.host.data)
+    return task.host.data["id"]
 
 
 def multiple_tasks(task: Task):
@@ -37,5 +35,23 @@ def multiple_tasks(task: Task):
     task.run(gather_netbox_facts)
 
 
-test_results = nr.run(name="running multiple tasks", task=multiple_tasks)
-print_result(test_results)
+
+
+
+st.write("This is my first streamlit app")
+st.write("This is my second streamlit app")
+
+all_users = list(nr.inventory.hosts)
+with st.container(border=True):
+    users = st.multiselect("Users", all_users)
+
+if st.button("Send balloons!"):
+    test_results = nr.run(name="running multiple tasks", task=multiple_tasks)
+    st.write(test_results)
+
+# figure out how to run script background script
+
+# Select devices from list
+
+
+# run nornir get facts script
